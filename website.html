@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- The viewport meta tag is updated to ensure the page is fully responsive on all devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Marvin Ramos - Portfolio</title>
+    <!-- The Inter font is loaded from Google Fonts for a clean, modern look. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS is loaded from a CDN to provide a utility-first styling framework. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS is used for the complex gradient background and to apply the Inter font. */
+        body {
+            /* A dramatic vertical gradient from black to blue to pink and back. */
+            background: linear-gradient(to bottom, #000000 0%, #000e5c 25%, #ff0379 50%, #000e5c 75%, #000000 100%);
+            color: #d1d1d1;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+        }
+
+        /* A custom font-family for headings, using a fallback if 'Georgia' is not available. */
+        .font-georgia {
+            font-family: 'Georgia', serif;
+        }
+
+        /* Adds a subtle hover effect to the main call-to-action button. */
+        .cta-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Creates an animated underline effect for the "Know me more" link on hover. */
+        .know-more-link {
+            position: relative;
+        }
+        .know-more-link::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: #d1d1d1;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transition: transform 0.3s ease;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+        .know-more-link:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Adds a divider line between paragraphs in the 'About Me' section. */
+        .about-text p {
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* Applies a white glowing shadow to the profile pictures, which fades on hover. */
+        .white-shadow {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        /* Styling for the testimonial cards, adding a subtle background and a quote mark. */
+        .testimonial-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        .testimonial-card::before {
+            content: "“";
+            font-family: 'Georgia', serif;
+            font-size: 6rem;
+            color: #00000000;
+            opacity: 0.8;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            line-height: 1;
+        }
+        .testimonial-card p {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <!-- The navbar is fixed to the top, hiding when scrolling down and reappearing when scrolling up. -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 py-4 px-8 bg-black/50 backdrop-blur-md transition-transform duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-center lg:justify-between">
+            <a href="#" class="font-georgia text-2xl font-bold tracking-wide hidden lg:block">Marvin Ramos</a>
+            <div class="flex space-x-6 text-sm md:text-base">
+                <a href="#hero" class="hover:text-white transition-colors duration-300">Home</a>
+                <a href="#about-me" class="hover:text-white transition-colors duration-300">About</a>
+                <a href="#background-strengths" class="hover:text-white transition-colors duration-300">Strengths</a>
+                <a href="#skills" class="hover:text-white transition-colors duration-300">Skills</a>
+                <a href="#testimonials" class="hover:text-white transition-colors duration-300">Testimonials</a>
+                <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- First Section: Hero -->
+    <!-- This section introduces Marvin with a large, centered name and a profile picture. -->
+    <section id="hero" class="min-h-screen flex items-center justify-center p-8 lg:p-16 pt-24">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-between lg:flex-row lg:gap-16">
+            <div class="flex-1 text-center">
+                <h1 class="font-georgia text-6xl md:text-7xl lg:text-8xl leading-none font-normal mb-8">
+                    Marvin<br>Arangca<br>Ramos
+                </h1>
+                <a href="#about-me" class="cta-button mt-8 px-8 py-4 border border-[#d1d1d1] rounded-full text-lg cursor-pointer transition-colors duration-300 hover:bg-[#d1d1d1] hover:text-black">
+                    Customer Service Specialist
+                </a>
+            </div>
+            <div class="flex-1 mt-12 lg:mt-0 relative flex justify-center items-center">
+                <div class="w-64 h-96 rounded-full overflow-hidden border border-gray-400 mt-[-3rem]">
+                    <!-- This image is kept with your original file name. -->
+                    <img src="background.png" alt="Marvin Arangca Ramos" class="w-full h-full object-cover rounded-full white-shadow">
+                </div>
+                <a href="#about-me" class="know-more-link mt-8 lg:absolute bottom-1 left-1/2 -translate-x-1/2 block text-white text-xl font-medium whitespace-nowrap">
+                    Know me more
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider line between sections -->
+    <div class="max-w-7xl mx-auto px-4 my-12 border-b border-[#d1d1d1]/40"></div>
+
+    <!-- Second Section: About Me -->
+    <!-- Provides a brief introduction and professional summary. -->
+    <section class="p-2 lg:p-4" id="about-me">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-between lg:flex-row lg:gap-16">
+            <div class="flex-1 mt-12 lg:mt-0 flex justify-center items-center">
+                   <div class="w-64 h-96 rounded-full overflow-hidden">
+                    <!-- This image is kept with your original file name. -->
+                    <img src="flip.png" alt="Marvin Ramos professional photo" class="w-full h-full object-cover rounded-full white-shadow">
+                </div>
+            </div>
+            <div class="flex-1 text-center about-text">
+                <h2 class="font-georgia text-5xl md:text-6xl font-normal leading-none mb-8">
+                    I'm Marvin
+                </h2>
+                <p class="text-lg md:text-xl leading-relaxed mb-6">
+                    My four years in BPO, including time as a supervisor, have equipped me with the organizational and communication skills essential for a smooth production workflow. I am skilled at managing projects, taking direction, and ensuring every video project is completed on time and to a high standard, ready to become a reliable asset to any team.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section: My Background & Strengths -->
+    <!-- This section details Marvin's education, work history, and key strengths. -->
+    <section id="background-strengths" class="py-16 px-8 lg:py-24 lg:px-16 background-section">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
+            <div class="w-full pb-12 mb-12 border-b border-[#d1d1d1]/40">
+                <h2 class="font-georgia text-5xl md:text-6xl font-normal mb-8">My Background</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                    <div class="background-item">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 mt-8">Education</h3>
+                        <ul class="list-none p-0 m-0 text-lg">
+                            <li>Internship HRS from Richwell Colleges INC, 2019</li>
+                        </ul>
+                    </div>
+                    <div class="background-item">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 mt-8">Work Experience</h3>
+                        <ul class="list-none p-0 m-0 text-lg">
+                            <li>Barista and Bartender at a local diner, 2019-2021</li>
+                            <li>Customer Service Representative and Technical Support in Concentrix, 2021-2022</li>
+                            <li>Promoted as Supervisor in Concentrix within the same line of business, 2022-2025</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full pt-12 text-center strengths-details">
+                <h2 class="font-georgia text-5xl md:text-6xl font-normal mb-8">My Strengths</h2>
+                <div class="flex flex-col md:flex-row justify-center gap-12 md:gap-16 mt-8 flex-wrap strengths-container">
+                    <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                        <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                            <!-- This image is kept with your original file name. -->
+                            <img src="1.png" alt="Technical proficiency icon" class="object-cover w-full h-full rounded-full">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 truncate">Technical proficiency</h3>
+                        <p class="text-base leading-relaxed">I can work under pressure and can handle multiple tasks at once.</p>
+                    </div>
+                    <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                        <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                            <!-- This image is kept with your original file name. -->
+                            <img src="2.png" alt="Under pressure icon" class="object-cover w-full h-full rounded-full">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 truncate">Can work under-pressure</h3>
+                        <p class="text-base leading-relaxed">...and can handle multiple tasks at all at once.</p>
+                    </div>
+                    <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                        <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                            <!-- This image is kept with your original file name. -->
+                            <img src="3.png" alt="Interpersonal skills icon" class="object-cover w-full h-full rounded-full">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 truncate">Interpersonal & Professional</h3>
+                        <p class="text-base leading-relaxed">Can communicate and interact effectively with others</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More of My Strengths Section -->
+    <!-- A continuation of the strengths section with more key attributes. -->
+    <section id="more-strengths" class="py-16 px-8 lg:py-24 lg:px-16 text-center more-strengths-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-georgia text-5xl md:text-6xl font-normal mb-8">More of My Strengths</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-12 md:gap-16 mt-8 flex-wrap strengths-container">
+                <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="m1.png" alt="Adaptability icon" class="object-cover w-full h-full rounded-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 truncate">Adaptability</h3>
+                    <p class="text-base leading-relaxed">Quickly adjusts to new environments and challenges.</p>
+                </div>
+                <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="m3.png" alt="Team player icon" class="object-cover w-full h-full rounded-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 truncate">Team Player</h3>
+                    <p class="text-base leading-relaxed">Collaborates effectively to achieve common goals.</p>
+                </div>
+                <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="m2.png" alt="Problem-solving icon" class="object-cover w-full h-full rounded-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 truncate">Problem-Solving</h3>
+                        <p class="text-base leading-relaxed">Analyzes complex issues and develops creative solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- My Skills Section -->
+    <!-- Outlines key skills with descriptive text. -->
+    <section id="skills" class="py-16 px-8 lg:py-24 lg:px-16 text-center more-strengths-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-georgia text-5xl md:text-6xl font-normal mb-8">My Skills</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-12 md:gap-16 mt-8 flex-wrap strengths-container">
+                <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="s1.png" alt="Administrative Support icon" class="object-cover w-full h-full rounded-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 truncate">Administrative Support</h3>
+                    <p class="text-base leading-relaxed">I am a skilled and organized professional ready to provide administrative support with a foundation built on solid experience in data entry and CRM tools. My background as a BPO Supervisor taught me to manage tasks efficiently and prioritize projects, ensuring a smooth and productive workflow</p>
+                </div>
+                <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="s2.png" alt="Video Editing icon" class="object-cover w-full h-full rounded-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 truncate">Video Editing</h3>
+                    <p class="text-base leading-relaxed">Proficient in video editing software such as Adobe Premiere Pro and DaVinci Resolve to create engaging and high-quality video content.</p>
+                </div>
+                <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="s3.png" alt="Web Developing icon" class="object-cover w-full h-full rounded-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 truncate">Web Developing</h3>
+                    <p class="text-base leading-relaxed">I have a solid understanding of front-end development, including HTML, CSS, and JavaScript, to build and maintain modern websites.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <!-- Displays testimonials with the original screenshot image sources. -->
+    <section id="testimonials" class="py-16 px-8 lg:py-24 lg:px-16 text-center more-strengths-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-georgia text-5xl md:text-6xl font-normal mb-12">What My Bosses Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Screenshot Frame 1 - UPDATED STYLING -->
+                <div class="w-full h-auto p-4 flex items-center justify-center bg-black/40 border border-[#d1d1d1]/40 rounded-xl shadow-lg">
+                    <div class="text-center">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="t1.png" alt="Testimonial screenshot" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+                <!-- Screenshot Frame 2 - UPDATED STYLING -->
+                <div class="w-full h-auto p-4 flex items-center justify-center bg-black/40 border border-[#d1d1d1]/40 rounded-xl shadow-lg">
+                    <div class="text-center">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="t2.png" alt="Testimonial screenshot" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+                <!-- Screenshot Frame 3 - UPDATED STYLING -->
+                <div class="w-full h-auto p-4 flex items-center justify-center bg-black/40 border border-[#d1d1d1]/40 rounded-xl shadow-lg">
+                    <div class="text-center">
+                        <!-- This image is kept with your original file name. -->
+                        <img src="t3.png" alt="Testimonial screenshot" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Details Section -->
+    <!-- This section provides contact information and social media links. -->
+    <section id="contact" class="py-16 px-8 lg:py-24 lg:px-16 text-center contact-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-georgia text-5xl md:text-6xl font-normal mb-8">Get in touch</h2>
+            <p class="max-w-xl mx-auto text-[#b0b0b0] mb-8">I'm currently open to new opportunities. Whether you have a question or just want to say hi, my inbox is always open!</p>
+            <a href="mailto:marvinramos564@gmail.com" class="inline-block px-8 py-4 border border-[#d1d1d1] rounded-full text-lg cursor-pointer transition-colors duration-300 hover:bg-[#d1d1d1] hover:text-black">Say Hello</a>
+
+            <div class="flex justify-center gap-8 md:gap-12 mt-8 flex-wrap social-icons">
+                <div class="flex flex-col items-center">
+                    <!-- Link to download the resume. -->
+                    <a href="https://drive.google.com/file/d/15sNDDryYdhKmIZYPUS8FETgV-H26mPD4/view?usp=sharing" download class="block mb-2">
+                        <div class="w-16 h-16 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center hover:bg-blue-800 transition-colors duration-300">
+                            <span class="text-2xl font-bold">R</span>
+                        </div>
+                    </a>
+                    <p class="social-title text-sm mt-1">Resume</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <!-- Link to LinkedIn profile. -->
+                    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="block mb-2">
+                        <div class="w-16 h-16 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center hover:bg-blue-800 transition-colors duration-300">
+                            <span class="text-2xl font-bold">in</span>
+                        </div>
+                    </a>
+                    <p class="social-title text-sm mt-1">LinkedIn</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <!-- Link to Facebook profile. -->
+                    <a href="https://www.facebook.com/castiel.zaqarangcawinchester" target="_blank" class="block mb-2">
+                        <div class="w-16 h-16 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center hover:bg-blue-800 transition-colors duration-300">
+                            <span class="text-2xl font-bold">f</span>
+                        </div>
+                    </a>
+                    <p class="social-title text-sm mt-1">Facebook</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <!-- Link to email address. -->
+                    <a href="mailto:marvinramos564@gmail.com" class="block mb-2">
+                        <div class="w-16 h-16 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center hover:bg-blue-800 transition-colors duration-300">
+                            <span class="text-2xl font-bold">M</span>
+                        </div>
+                    </a>
+                    <p class="social-title text-sm mt-1">Email</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- A simple footer with a closing message. -->
+    <footer id="footer" class="py-8 px-4 text-center bg-black/20 text-[#d1d1d1]/60">
+        <p>I hope to work with you soon.</p>
+    </footer>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', async () => {
+
+            // ---- Scroll Logic ----
+            // Hides the navigation bar when scrolling down and shows it when scrolling up.
+            let prevScrollpos = window.scrollY;
+            const navbar = document.getElementById("navbar");
+
+            window.onscroll = function() {
+                let currentScrollPos = window.scrollY;
+                if (prevScrollpos > currentScrollPos) {
+                    navbar.style.transform = "translateY(0)";
+                } else {
+                    navbar.style.transform = "translateY(-100%)";
+                }
+                prevScrollpos = currentScrollPos;
+            }
+        });
+    </script>
+</body>
+</html>
