@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS is loaded from a CDN to provide a utility-first styling framework. -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Favicon link added here -->
+    <link rel="icon" type="image/png" href="icon.png">
     <style>
         /* Custom CSS is used for the complex gradient background and to apply the Inter font. */
         body {
@@ -114,6 +116,54 @@
                 height: 18rem; /* 288px */
             }
         }
+        /* Custom CSS for the new button hover effect */
+        .contact-me-button {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-me-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+        .contact-me-button:hover::after {
+            transform: scaleX(1);
+        }
+        /* Custom styles for the comment section */
+        .comment-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        .comment-card p {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        /* CSS for the shake and glowing effect on incorrect PIN */
+        .pin-shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        .pin-glow {
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -131,6 +181,7 @@
                 <a href="#skills" class="hover:text-white transition-colors duration-300">Skills</a>
                 <a href="#testimonials" class="hover:text-white transition-colors duration-300">Testimonials</a>
                 <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
+                <a href="#comments" class="hover:text-white transition-colors duration-300">Comments</a>
             </div>
         </div>
     </nav>
@@ -143,8 +194,8 @@
                 <h1 class="font-georgia text-6xl md:text-7xl lg:text-8xl leading-none font-normal mb-8">
                     Marvin<br>Arangca<br>Ramos
                 </h1>
-                <a href="#about-me" class="cta-button mt-8 px-8 py-4 border border-[#d1d1d1] rounded-full text-lg cursor-pointer transition-colors duration-300 hover:bg-[#d1d1d1] hover:text-black">
-                    Customer Service Specialist
+                <a href="#contact" class="contact-me-button mt-8 px-8 py-4 border border-[#d1d1d1] rounded-full text-lg cursor-pointer transition-colors duration-300 hover:text-black">
+                    Contact Me
                 </a>
             </div>
             <!-- The flex container for the image and the 'Know me more' link is updated to use flex-col. -->
@@ -229,7 +280,7 @@
                         <h3 class="text-2xl font-bold mb-3">Can work under-pressure</h3>
                         <p class="text-base leading-relaxed">...and can handle multiple tasks at all at once.</p>
                     </div>
-                    <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                    <div class-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
                         <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
                             <!-- This image is kept with your original file name. -->
                             <img src="3.png" alt="Interpersonal skills icon" class="object-cover w-full h-full rounded-full">
@@ -264,7 +315,7 @@
                     <h3 class="text-2xl font-bold mb-3">Team Player</h3>
                     <p class="text-base leading-relaxed">Collaborates effectively to achieve common goals.</p>
                 </div>
-                <div class="flex-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
+                <div class-shrink-0 w-full md:w-1/3 max-w-sm mx-auto strength-item">
                     <div class="w-48 h-48 mx-auto mb-6 rounded-full border border-[#d1d1d1]/40 flex items-center justify-center overflow-hidden strength-icon">
                         <!-- This image is kept with your original file name. -->
                         <img src="m2.png" alt="Problem-solving icon" class="object-cover w-full h-full rounded-full">
@@ -390,15 +441,43 @@
         </div>
     </section>
 
+    <!-- Divider line between sections -->
+    <div class="max-w-7xl mx-auto px-4 my-12 border-b border-[#d1d1d1]/40"></div>
+
+    <!-- Comments Section -->
+    <section id="comments" class="py-16 px-8 lg:py-24 lg:px-16 text-center scroll-in">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="font-georgia text-5xl md:text-6xl font-normal mb-8">Comments</h2>
+            <!-- Display the user ID for debugging and collaborative purposes -->
+            <p id="user-id-display" class="text-sm text-gray-400 mb-4"></p>
+            <form id="comment-form" class="mb-8">
+                <!-- Name input field added here -->
+                <input type="text" id="comment-name" class="w-full p-4 rounded-lg bg-white/10 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4" placeholder="Your name (optional)">
+                <textarea id="comment-text" class="w-full p-4 rounded-lg bg-white/10 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 h-32" placeholder="Write your comment here..." required></textarea>
+                <button type="submit" id="submit-btn" class="w-full md:w-auto px-8 py-4 bg-white/20 text-white rounded-full text-lg font-bold hover:bg-white/30 transition-colors duration-300">
+                    Post Comment
+                </button>
+            </form>
+            <div id="comments-list" class="space-y-4 text-left">
+                <!-- Comments will be dynamically inserted here -->
+                <p class="text-gray-400 text-center">Loading comments...</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <!-- A simple footer with a closing message. -->
     <footer id="footer" class="py-8 px-4 text-center bg-black/20 text-[#d1d1d1]/60">
         <p>I hope to work with you soon.</p>
     </footer>
 
+    <!-- Firebase SDKs -->
     <script type="module">
-        document.addEventListener('DOMContentLoaded', async () => {
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        document.addEventListener('DOMContentLoaded', async () => {
             // ---- Scroll Logic for Navbar ----
             // Hides the navigation bar when scrolling down and shows it when scrolling up.
             let prevScrollpos = window.scrollY;
@@ -436,6 +515,179 @@
             animatedElements.forEach(element => {
                 observer.observe(element);
             });
+
+            // ---- Firestore Comments Logic ----
+            // Initialize Firebase with the provided configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyAKQnJJSjPnmmaLiYnDyj45xzYIjLTGJXI",
+                authDomain: "project-portfolio-b10fc.firebaseapp.com",
+                projectId: "project-portfolio-b10fc",
+                storageBucket: "project-portfolio-b10fc.firebasestorage.app",
+                messagingSenderId: "848356348278",
+                appId: "1:848356348278:web:5cc04a309e425899dcaa57",
+                measurementId: "G-ZF97LNFD32"
+            };
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+            if (Object.keys(firebaseConfig).length > 0) {
+                const app = initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+                const auth = getAuth(app);
+                const deletePin = "041115"; // The PIN for deleting comments
+
+                // Sign in anonymously to enable database access
+                try {
+                    await signInAnonymously(auth);
+                    const userId = auth.currentUser.uid;
+                    document.getElementById('user-id-display').textContent = `Your User ID: ${userId}`;
+
+                    const commentForm = document.getElementById('comment-form');
+                    const commentNameInput = document.getElementById('comment-name');
+                    const commentTextarea = document.getElementById('comment-text');
+                    const commentsList = document.getElementById('comments-list');
+                    const submitBtn = document.getElementById('submit-btn');
+                    
+                    // List of emojis for the profile pictures
+                    const emojis = ['😀', '😂', '👍', '🔥', '🚀', '🌟', '💡', '💯', '✨', '🤩', '😎', '🥳', '🙌', '👏'];
+                    const getEmoji = () => emojis[Math.floor(Math.random() * emojis.length)];
+
+                    // Collection path for public comments
+                    const commentsCollectionPath = `/artifacts/${appId}/public/data/comments`;
+                    const commentsCollectionRef = collection(db, commentsCollectionPath);
+
+                    // Listen for comments in real-time
+                    onSnapshot(commentsCollectionRef, (snapshot) => {
+                        commentsList.innerHTML = '';
+                        if (snapshot.empty) {
+                            commentsList.innerHTML = '<p class="text-gray-400 text-center">No comments yet. Be the first to post!</p>';
+                            return;
+                        }
+
+                        snapshot.forEach(commentDoc => {
+                            const data = commentDoc.data();
+                            const docId = commentDoc.id; // Get the document ID
+                            const commentCard = document.createElement('div');
+                            commentCard.className = 'comment-card p-4 rounded-lg mb-4';
+
+                            // Get a random emoji for this comment
+                            const randomEmoji = getEmoji();
+
+                            // Display the name, defaulting to 'Guest' if not provided
+                            const nameToDisplay = data.name || 'Guest';
+                            
+                            commentCard.innerHTML = `
+                                <div class="flex items-center space-x-4 mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-xl">
+                                        ${randomEmoji}
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="text-sm font-semibold mb-1 flex justify-between items-center">
+                                            <span><span class="text-gray-100">${nameToDisplay}</span> (<span class="text-gray-400 text-xs">${data.userId}</span>)</span>
+                                            <button class="delete-btn text-red-400 hover:text-red-600 transition-colors duration-300 text-sm" data-doc-id="${docId}">
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <p class="text-base text-gray-200">${data.comment}</p>
+                                    </div>
+                                </div>
+                                <div class="pin-input-container mt-2 hidden flex items-center justify-end">
+                                    <input type="password" class="pin-input w-32 px-2 py-1 rounded-md bg-white/10 text-white placeholder-gray-400 text-sm focus:outline-none" placeholder="Enter PIN" />
+                                    <button class="confirm-delete-btn ml-2 px-3 py-1 bg-red-500 rounded-md text-white text-sm hover:bg-red-600 transition-colors duration-300">
+                                        Confirm
+                                    </button>
+                                </div>
+                            `;
+                            commentsList.appendChild(commentCard);
+
+                            const deleteButton = commentCard.querySelector('.delete-btn');
+                            const pinContainer = commentCard.querySelector('.pin-input-container');
+                            const pinInput = commentCard.querySelector('.pin-input');
+                            const confirmButton = commentCard.querySelector('.confirm-delete-btn');
+
+                            deleteButton.addEventListener('click', () => {
+                                pinContainer.classList.toggle('hidden');
+                            });
+
+                            confirmButton.addEventListener('click', async () => {
+                                // Add a trim to the pin value to remove any potential whitespace
+                                if (pinInput.value.trim() === deletePin) {
+                                    try {
+                                        // Use the document ID from the button's data attribute
+                                        await deleteDoc(doc(db, commentsCollectionPath, docId));
+                                    } catch (error) {
+                                        console.error("Error deleting comment: ", error);
+                                    }
+                                } else {
+                                    // Add the shake and glow effects
+                                    pinInput.classList.add('pin-shake', 'pin-glow');
+                                    pinInput.value = '';
+                                    setTimeout(() => {
+                                        pinInput.classList.remove('pin-shake', 'pin-glow');
+                                    }, 1000); // Remove the classes after the animation
+                                }
+                            });
+                        });
+                    }, (error) => {
+                        console.error("Error fetching comments: ", error);
+                        commentsList.innerHTML = '<p class="text-red-400 text-center">Error loading comments. Please try again.</p>';
+                    });
+
+                    // Handle form submission
+                    commentForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        // Get the name and comment values
+                        const name = commentNameInput.value.trim() || 'Guest';
+                        const comment = commentTextarea.value.trim();
+
+                        if (comment === '') return;
+
+                        submitBtn.textContent = 'Posting...';
+                        submitBtn.disabled = true;
+
+                        try {
+                            await addDoc(commentsCollectionRef, {
+                                userId: userId,
+                                name: name, // Add the name field
+                                comment: comment,
+                                timestamp: serverTimestamp()
+                            });
+                            // Clear both the name and comment inputs after successful post
+                            commentNameInput.value = '';
+                            commentTextarea.value = '';
+                        } catch (error) {
+                            console.error("Error adding comment: ", error);
+                            // Custom error message for the user, as alert() is restricted
+                            const errorMessageBox = document.createElement('div');
+                            errorMessageBox.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50';
+                            errorMessageBox.innerHTML = `
+                                <div class="bg-gray-800 p-6 rounded-lg text-white">
+                                    <p class="text-lg mb-4">Failed to post comment. Please try again.</p>
+                                    <button class="px-4 py-2 bg-blue-500 rounded-md" onclick="this.parentElement.parentElement.remove()">OK</button>
+                                </div>
+                            `;
+                            document.body.appendChild(errorMessageBox);
+                        } finally {
+                            submitBtn.textContent = 'Post Comment';
+                            submitBtn.disabled = false;
+                        }
+                    });
+
+                } catch (error) {
+                    console.error("Anonymous authentication failed: ", error);
+                    // Custom error message for the user, as alert() is restricted
+                    const errorMessageBox = document.createElement('div');
+                    errorMessageBox.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50';
+                    errorMessageBox.innerHTML = `
+                        <div class="bg-gray-800 p-6 rounded-lg text-white">
+                            <p class="text-lg mb-4">Authentication failed. Please check your network connection.</p>
+                            <button class="px-4 py-2 bg-blue-500 rounded-md" onclick="this.parentElement.parentElement.remove()">OK</button>
+                        </div>
+                    `;
+                    document.body.appendChild(errorMessageBox);
+                }
+            } else {
+                 console.error("Firebase config is not defined.");
+            }
         });
     </script>
 </body>
